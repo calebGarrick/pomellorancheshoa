@@ -57,7 +57,7 @@ jobs:
 
       - name: Commit build artifacts
         run: |
-          git add /vendor /public/build /bootstrap/cache
+          git add vendor public/build bootstrap/cache
           git commit -m "Build release $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes"
 
       - name: Tag and push
