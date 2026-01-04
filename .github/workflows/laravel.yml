@@ -1,0 +1,68 @@
+name: Build and Release Chirper
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, bcmath, pdo_mysql
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: /package-lock.json
+
+      - name: Install PHP deps
+        run: |
+          composer install \
+            --no-dev \
+            --optimize-autoloader \
+            --no-interaction
+
+      - name: Build frontend assets
+        working-directory: chirper
+        run: |
+          npm ci
+          npm run build
+
+      - name: Prepare Laravel caches
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan optimize
+
+      - name: Create release branch
+        run: git checkout -B release
+
+      - name: Commit build artifacts
+        run: |
+          git add /vendor /public/build /bootstrap/cache
+          git commit -m "Build chirper release $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes"
+
+      - name: Tag and push
+        run: |
+          VERSION="v$(date +'%Y.%m.%d.%H%M')"
+          git tag -f "$VERSION"
+          git push origin release --tags --force
