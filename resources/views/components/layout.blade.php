@@ -19,6 +19,7 @@
                 Pomello Ranches HOA
             </a>
             <a class="btn {{ request()->routeIs('about') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('about') }}">About Us</a>
+            <a class="btn {{ request()->routeIs('contact') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('contact') }}">Contact</a>
         </div>
         <div class="navbar-end gap-2">
             @auth

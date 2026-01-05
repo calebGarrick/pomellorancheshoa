@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AlertController;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
@@ -19,6 +20,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/', [AlertController::class, 'index']);
     Route::get('/about', function() {return view('about');})->name('about');
+    Route::get('/contact', function() {return view('contact');})->name('contact');
+    Route::post('/contact/send', ContactController::class)->name('contact.send');
     Route::get('/meetings', function() {return view('meetings');})->name('meetings');
     Route::get('/minutes', function() {return view('minutes');})->name('minutes');
     
