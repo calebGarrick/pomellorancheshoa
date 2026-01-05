@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en" data-theme="lofi">
+<html lang="en" data-theme="autumn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ isset($title) ? $title . ' - Chirper' : 'Chirper' }}</title>
+    <title>{{ isset($title) ? $title . ' - Pomello Ranches Hoa' : 'Pomello Ranches Hoa' }}</title>
     <link rel="preconnect" href="<https://fonts.bunny.net>">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
@@ -14,7 +14,10 @@
 <body class="min-h-screen flex flex-col bg-base-200 font-sans">
     <nav class="navbar bg-base-100">
         <div class="navbar-start">
-            <a href="/" class="btn btn-ghost text-xl">🐦 Chirper</a>
+            <a href="/" class="btn btn-ghost text-xl">
+                <img src="{{ Vite::asset('resources/images/logocolor220.png') }}" alt="Pomello Ranches HOA Logo" class="h-8 w-8 mr-2"/>
+                Pomello Ranches HOA
+            </a>
         </div>
         <div class="navbar-end gap-2">
             @auth
@@ -29,6 +32,10 @@
             @endauth
         </div>
     </nav>
+
+    <main class="flex-1 container mx-auto px-4 py-8">
+        {{ $slot }}
+    </main>
     
     <!-- Success Toast -->
     @if (session('success'))
@@ -42,13 +49,16 @@
         </div>
     @endif
 
-    <main class="flex-1 container mx-auto px-4 py-8">
-        {{ $slot }}
-    </main>
 
     <footer class="footer footer-center p-5 bg-base-300 text-base-content text-xs">
         <div>
-            <p>© {{ date('Y') }} Chirper - Built with Laravel and ❤️</p>
+            <p>Copyright &copy; Pomello Ranches HOA 2025.</p>
+            <p>
+                Information is furnished as accurate but is not warranted 
+                and may be subject to errors or omissions. If you notice 
+                any issues with this website, please use the contact form 
+                to inform us.
+            </p>
         </div>
     </footer>
 </body>

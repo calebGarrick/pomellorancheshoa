@@ -20,6 +20,7 @@ class User extends Authenticatable {
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -41,11 +42,12 @@ class User extends Authenticatable {
     {
         return [
             'password' => 'hashed',
+            'role' => UserRole::class,
         ];
     }
 
-    public function chirps(): HasMany {
-        return $this->hasMany(Chirp::class);
+    public function alerts(): HasMany {
+        return $this->hasMany(Alert::class);
     }
     
 }

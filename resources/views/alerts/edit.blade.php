@@ -1,26 +1,39 @@
 
 <x-layout>
     <x-slot:title>
-        Edit Chirp
+        Edit Alert
     </x-slot:title>
 
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold mt-8">Edit Chirp</h1>
+        <h1 class="text-3xl font-bold mt-8">Edit Alert</h1>
 
         <div class="card bg-base-100 shadow mt-8">
             <div class="card-body">
-                <form method="POST" action="/chirps/{{ $chirp->id }}">
+                <form method="PUT" action="/alerts/{{ $alert->id }}">
                     @csrf
-                    @method('PUT')
 
                     <div class="form-control w-full">
+                        <textarea
+                            name="title"
+                            class="textarea textarea-bordered w-full resize-none @error('title') textarea-error @enderror"
+                            rows="2"
+                            maxlength="100"
+                            required
+                        >{{ old('title', $alert->title) }}</textarea>
+                        
+                        @error('title')
+                            <div class="label">
+                                <span class="label-text-alt text-error">{{ $title }}</span>
+                            </div>
+                        @enderror
+
                         <textarea
                             name="message"
                             class="textarea textarea-bordered w-full resize-none @error('message') textarea-error @enderror"
                             rows="4"
-                            maxlength="255"
+                            maxlength="1027"
                             required
-                        >{{ old('message', $chirp->message) }}</textarea>
+                        >{{ old('message', $alert->message) }}</textarea>
 
                         @error('message')
                             <div class="label">
@@ -34,7 +47,7 @@
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-primary btn-sm">
-                            Update Chirp
+                            Update Alert
                         </button>
                     </div>
                 </form>

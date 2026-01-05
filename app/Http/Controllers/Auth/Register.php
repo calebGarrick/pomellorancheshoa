@@ -29,6 +29,6 @@ class Register extends Controller
         
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Welcome to Chirper');
+        return redirect('/')->with('success', 'Welcome to Pomello Ranches');
     }
 }
