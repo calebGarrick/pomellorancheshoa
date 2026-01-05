@@ -13,21 +13,22 @@
 </head>
 <body class="min-h-screen flex flex-col bg-base-200 font-sans">
     <nav class="navbar bg-base-100">
-        <div class="navbar-start">
+        <div class="navbar-start flex gap-2">
             <a href="/" class="btn btn-ghost text-xl">
                 <img src="{{ Vite::asset('resources/images/logocolor220.png') }}" alt="Pomello Ranches HOA Logo" class="h-8 w-8 mr-2"/>
                 Pomello Ranches HOA
             </a>
+            <a class="btn {{ request()->routeIs('about') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('about') }}">About Us</a>
         </div>
         <div class="navbar-end gap-2">
             @auth
                 <span class="text-sm">{{ auth()->user()->name }}</span>
                 <form method="POST" action="/logout" class="inline">
                     @csrf
-                    <button type="submit" class="btn btn-ghost btn-sm">Logout</button>
+                    <button type="submit" class="btn btn btn-sm">Logout</button>
                 </form>
             @else
-                <a href="/login" class="btn btn-ghost btn-sm">Sign In</a>
+                <a href="/login" class="btn btn btn-sm">Sign In</a>
                 <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Sign Up</a>
             @endauth
         </div>

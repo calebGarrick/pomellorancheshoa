@@ -30,6 +30,8 @@ class AlertController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Alert::class);
+
         $validated = $request->validate([
             'title' => [
                 'required',
@@ -48,7 +50,7 @@ class AlertController extends Controller
             ],
         ]);
 
-        auth('admin')->user()->alerts()->create($validated);
+        auth()->user()->alerts()->create($validated);
 
         return redirect('/')->with('success', 'Your alert has been posted!');
     }

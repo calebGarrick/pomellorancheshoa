@@ -9,10 +9,14 @@
 
         <div class="card bg-base-100 shadow mt-8">
             <div class="card-body">
-                <form method="PUT" action="/alerts/{{ $alert->id }}">
+                <form method="POST" action="{{ route('alerts.update', $alert) }}">
                     @csrf
+                    @method('PUT')
 
                     <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text">Title</span>
+                        </label>
                         <textarea
                             name="title"
                             class="textarea textarea-bordered w-full resize-none @error('title') textarea-error @enderror"
@@ -27,6 +31,11 @@
                             </div>
                         @enderror
 
+                    </div>
+                    <div class="form-control w-full mt-4">
+                        <label class="label">
+                            <span class="label-text ">Message</span>
+                        </label> 
                         <textarea
                             name="message"
                             class="textarea textarea-bordered w-full resize-none @error('message') textarea-error @enderror"
@@ -43,7 +52,7 @@
                     </div>
 
                     <div class="card-actions justify-between mt-4">
-                        <a href="/" class="btn btn-ghost btn-sm">
+                        <a href="/" class="btn btn btn-sm">
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-primary btn-sm">

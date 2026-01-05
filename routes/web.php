@@ -8,14 +8,19 @@ use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Login;
 
 Route::middleware('auth')->group(function () {
-    Route::post('/alerts', [AlertController::class, 'store']);
-    Route::delete('/alerts/{alert}', [AlertController::class, 'destroy']);
-    Route::get('/alerts/{alert}/edit', [AlertController::class, 'edit']);
-    Route::put('/alerts/{alert}', [AlertController::class, 'update']);
+
+    Route::get('/alerts/{alert}/edit', [AlertController::class, 'edit'])->name('alerts.edit');
+    Route::post('/alerts', [AlertController::class, 'store'])->name('alerts.store');
+    Route::delete('/alerts/{alert}', [AlertController::class, 'destroy'])->name('alerts.destroy');
+    Route::put('/alerts/{alert}', [AlertController::class, 'update'])->name('alerts.update');
+
     Route::post('/logout', Logout::class);
 });
 
     Route::get('/', [AlertController::class, 'index']);
+    Route::get('/about', function() {return view('about');})->name('about');
+    Route::get('/meetings', function() {return view('meetings');})->name('meetings');
+    Route::get('/minutes', function() {return view('minutes');})->name('minutes');
     
     Route::post('/register', Register::class)
         ->middleware('guest');
