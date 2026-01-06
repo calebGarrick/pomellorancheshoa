@@ -2,20 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\AlertController;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Mail\ContactController;
 
 Route::middleware('auth')->group(function () {
-    Route::post('/chirps', [ChirpController::class, 'store']);
-    Route::delete('/chirps/{chirp}', [ChirpController::class, 'destroy']);
-    Route::get('/chirps/{chirp}/edit', [ChirpController::class, 'edit']);
-    Route::put('/chirps/{chirp}', [ChirpController::class, 'update']);
+
+    Route::get('/alerts/{alert}/edit', [AlertController::class, 'edit'])->name('alerts.edit');
+    Route::post('/alerts', [AlertController::class, 'store'])->name('alerts.store');
+    Route::delete('/alerts/{alert}', [AlertController::class, 'destroy'])->name('alerts.destroy');
+    Route::put('/alerts/{alert}', [AlertController::class, 'update'])->name('alerts.update');
+
     Route::post('/logout', Logout::class);
 });
 
-    Route::get('/', [ChirpController::class, 'index']);
+    Route::get('/', [AlertController::class, 'index']);
+    Route::get('/about', function() {return view('about');})->name('about');
+    Route::get('/contact', function() {return view('contact');})->name('contact');
+    Route::post('/contact/send', ContactController::class)->name('contact.send');
+    Route::get('/meetings', function() {return view('meetings');})->name('meetings');
+    Route::get('/minutes', function() {return view('minutes');})->name('minutes');
     
     Route::post('/register', Register::class)
         ->middleware('guest');

@@ -4,56 +4,70 @@
         Welcome
     </x-slot:title>
 
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold mt-8">Latest Chirps</h1>
- 
-        <!-- Chirp Form -->
-        <div class="card bg-base-100 shadow mt-8">
-            <div class="card-body">
-                <form method="POST" action="/chirps">
+    @foreach($alerts->all() as $alert)
+    <div role="alert" class="alert alert-error alert-soft flex flex-col mb-8">
+        <h3>{{ $alert->title }}</h4>
+        <span>
+            {{ $alert->message}}
+        </span>
+        @can('update', $alert)
+            <div class="flex flex-row gap-4">
+                <a href="{{ route('alerts.edit', $alert) }}" class="btn btn-accent mt-4">Edit</a>
+                <form method="POST" action="{{ route('alerts.destroy', $alert) }}" class="inline">
                     @csrf
-                    <div class="form-control w-full">
-                        <textarea
-                            name="message"
-                            placeholder="What's on your mind?"
-                            class="textarea textarea-bordered w-full resize-none"
-                            rows="4"
-                            maxlength="255"
-                            required
-                        >{{ old('message') }}</textarea>
-
-                        @error('message')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
-                    </div>
- 
-                    <div class="mt-4 flex items-center justify-end">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            Chirp
-                        </button>
-                    </div>
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-primary mt-4">Delete</button>
                 </form>
             </div>
-        </div>
- 
-        <!-- Feed -->
-        <div class="space-y-4 mt-8">
-            @forelse ($chirps as $chirp)
-                <x-chirp :chirp="$chirp" />
-            @empty
-                <div class="hero py-12">
-                    <div class="hero-content text-center">
-                        <div>
-                            <svg class="mx-auto h-12 w-12 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                            </svg>
-                            <p class="mt-4 text-base-content/60">No chirps yet. Be the first to chirp!</p>
-                        </div>
+        @endcan
+    </div>
+    @endforeach
+    @can('create', App\Models\Alert::class)
+        <button class="btn btn-primary mb-4" onclick="alertCreateModal.showModal()">
+            Create Alert
+        </button>
+        <dialog id="alertCreateModal" class="modal">
+            <div class="modal-box card">
+                <form method="POST" action="{{ route('alerts.store') }}">
+                    @csrf
+                    <h3 class="font-bold text-lg mb-4">Create Alert</h3>
+                    <div class="form-control w-full mb-4 flex gap-2">
+                        <label class="label w-20" for="title">
+                            <span class="label-text">Title</span>
+                        </label>
+                        <input type="text" name="title" id="title" class="input input-bordered" required maxlength="100"/>
                     </div>
-                </div>
-            @endforelse
+                    <div class="form-control mb-4 flex gap-2">
+                        <label class="label w-20" for="message">
+                            <span class="label-text">Message</span>
+                        </label>
+                        <textarea name="message" id="message" class="textarea textarea-bordered" required maxlength="1027"></textarea>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="submit" class="btn btn-primary">Create Alert</button>
+                        <button type="button" onclick="alertCreateModal.close()" class="btn">Cancel</button>
+                    </div>
+                </form>
+            </div>  
+        </dialog>
+    @endcan
+
+    <div class="hero bg-base-200 my-4">
+        <div class="hero-content flex-col lg:flex-row">
+            <img
+            src="{{Vite::asset('resources/images/IMG_5152.jpg')}}"
+            class="max-w-sm rounded-lg shadow-2xl"
+            />
+            <div>
+                Welcome to <h1 class="text-4xl font-bold"> Pomello Ranches Homeowners Association</h1>
+                <p class="py-4">
+                        The Pomello Ranches HOA exists to preserve the character of our community, protect property values, and encourage a genuine “neighbors helping neighbors” spirit.
+                        Whether you’re a new resident or have lived here for years, this page will help you understand how the HOA works and how to get involved.
+                </p>
+                <a class="btn btn-info" href="{{ route('contact') }}">Meeting RSVP</a>    
+            </div>
         </div>
     </div>
+
+    
 </x-layout>
