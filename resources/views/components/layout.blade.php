@@ -14,12 +14,30 @@
 <body class="min-h-screen flex flex-col bg-base-200 font-sans">
     <nav class="navbar bg-base-100">
         <div class="navbar-start flex gap-2">
-            <a href="/" class="btn btn-ghost text-xl">
-                <img src="{{ Vite::asset('resources/images/logocolor220.png') }}" alt="Pomello Ranches HOA Logo" class="h-8 w-8 mr-2"/>
-                Pomello Ranches HOA
-            </a>
-            <a class="btn {{ request()->routeIs('about') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('about') }}">About Us</a>
-            <a class="btn {{ request()->routeIs('contact') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('contact') }}">Contact</a>
+            <div class="dropdown block md:hidden">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
+                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col gap-2">
+                    <li>
+                        <a class="{{ request()->routeIs('home') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li>
+                        <a class="{{ request()->routeIs('about') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('about') }}">About Us</a>
+                    </li>
+                    <li>
+                        <a class="{{ request()->routeIs('contact') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('contact') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="hidden md:flex gap-2 items-center">
+                <a href="/" class="btn btn-ghost text-xl">
+                    <img src="{{ Vite::asset('resources/images/logocolor220.png') }}" alt="Pomello Ranches HOA Logo" class="h-8 w-8 mr-2"/>
+                    Pomello Ranches HOA
+                </a>
+                <a class="btn {{ request()->routeIs('about') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('about') }}">About Us</a>
+                <a class="btn {{ request()->routeIs('contact') ? 'bg-secondary' : 'bg-accent' }}" href="{{ route('contact') }}">Contact</a>
+            </div>
         </div>
         <div class="navbar-end gap-2">
             @auth

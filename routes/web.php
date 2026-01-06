@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', Logout::class);
 });
 
-    Route::get('/', [AlertController::class, 'index']);
+    Route::get('/', [AlertController::class, 'index'])->name('home');
     Route::get('/about', function() {return view('about');})->name('about');
     Route::get('/contact', function() {return view('contact');})->name('contact');
     Route::post('/contact/send', ContactController::class)->name('contact.send');

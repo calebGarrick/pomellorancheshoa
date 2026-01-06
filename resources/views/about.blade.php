@@ -22,7 +22,7 @@
     </div>
 
     <div class="flex w-full flex-col lg:flex-row mb-6 gap-6">
-        <div class="card bg-base-300 rounded-box grid h-52 grow place-items-center">
+        <div class="card bg-accent rounded-box grid min-h-48 grow place-items-center px-12">
             <h1 class="text-2xl font-bold">Our amenities</h1>
             <ul class="list-disc list-inside">
                 <li>Large, spacious lots with a true rural atmosphere</li>
@@ -31,7 +31,7 @@
                 <li>Neighbors who look out for one another</li>
             </ul>
         </div>
-        <div class="card bg-base-300 rounded-box grid h-52 grow place-items-center">
+        <div class="card bg-secondary rounded-box grid min-h-48 grow place-items-center px-12">
             <h1 class="text-2xl font-bold">Our role as an HOA</h1>
             <ul class="list-disc list-inside">
                 <li>Maintain common areas and landscaping</li>
@@ -42,28 +42,16 @@
             </ul>
         </div>
     </div>
-    
-    <p class="mb-4">
-        We are a volunteer board made up of your neighbors. We live here too, 
-        and we are committed to following through on what we say we will do. 
-        We are a peaceful, cooperative group dedicated to making our community 
-        a safe and enjoyable place to live. We will always treat residents 
-        with respect and kindness, and we kindly expect the same in return.
-        For everyone’s privacy and comfort, we respectfully ask that you do 
-        not come onto our personal properties with community concerns. 
-        Please use the contact form or bring your questions to the upcoming 
-        meetings, where they can be addressed properly.
-    </p>
 
-    <div class="card bg-base-300 rounded-box grid h-52 grow place-items-center">
+    <div class="card bg-info rounded-box grid max-h-140 min-h-98 grow place-items-center px-12">
         <h1 class="text-2xl font-bold">Your Board of Directors</h1>
         <p>Effective as of November 22, 2025, your HOA Board members are:</p>
         <ul class="list-disc list-inside">
             <li>
                 President/Treasurer/Website Operations: 
-                <span class="btn btn-link px-0" onclick="joeModal.showModal()">
+                <a class="btn btn-link px-0 h-4 align-baseline" onclick="joeModal.showModal()">
                     Joe Ricciardi
-                </span>
+                </a>
                 <dialog id="joeModal" class="modal">
                     <div class="modal-box card">
                         <div class="flex justify-between items-baseline mb-4">
@@ -99,5 +87,16 @@
             <li>Secretary: Lisa Blakeley</li>
             <li>Director: Camille Sarppraicone</li>
         </ul>
+        <p class="mb-4">
+            We are a volunteer board made up of your neighbors. We live here too, 
+            and we are committed to following through on what we say we will do. 
+            We are a peaceful, cooperative group dedicated to making our community 
+            a safe and enjoyable place to live. We will always treat residents 
+            with respect and kindness, and we kindly expect the same in return.
+            For everyone’s privacy and comfort, we respectfully ask that you do 
+            not come onto our personal properties with community concerns. 
+            Please use the contact form or bring your questions to the upcoming 
+            meetings, where they can be addressed properly.
+        </p>
     </div>
 </x-layout>
