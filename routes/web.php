@@ -37,3 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::view('/login', 'auth.login')
         ->middleware('guest')
         ->name('login');
+
+    Route::get('/path-check', function () {
+    return [
+        'base_path' => base_path(),
+        'storage_path' => storage_path(),
+        'log_path' => storage_path('logs/laravel.log'),
+    ];
+});
