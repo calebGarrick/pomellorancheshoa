@@ -29,7 +29,7 @@ class HoaContactForm extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Hoa Contact Form',
+            subject: 'Hoa Contact Form: ' . $this->data['topic'] . ' - ' . $this->data['name'],
             from: 'prhoa@mailmt.com',
         );
     }
