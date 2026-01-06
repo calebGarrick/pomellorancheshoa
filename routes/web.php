@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AlertController;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Mail\ContactController;
 
 Route::middleware('auth')->group(function () {
 

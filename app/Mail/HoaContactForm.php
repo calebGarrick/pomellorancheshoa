@@ -30,6 +30,7 @@ class HoaContactForm extends Mailable
     {
         return new Envelope(
             subject: 'Hoa Contact Form',
+            from: 'prhoa@mailmt.com',
         );
     }
 

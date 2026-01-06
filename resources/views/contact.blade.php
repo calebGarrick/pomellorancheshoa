@@ -5,7 +5,7 @@
     </x-slot:title>
 
     <div class="card bg-base-100 shadow-sm">
-        <div class="card-body">
+        <div class="card-body flex flex-col gap-2 items-center">
             <h2 class="card-title">Contact - Meeting RSVP Here</h2>
             <p>
                 Please use this form to submit any questions, concerns, 
@@ -21,27 +21,26 @@
             </p>
             <form method="POST" class="flex flex-col gap-4" action="{{ route('contact.send') }}">
                 @csrf
-                <div class="form-control">
-                    <label class="label w-16"><span class="label-text">Name *</span></label>
-                    <input type="text" name="name" class="input input-bordered @error('name') textarea-error @enderror" value="{{ old('name') }}" required>
-                </div>
-                <div class="form-control">
-                    <label class="label w-16"><span class="label-text">Email *</span></label>
-                    <input type="email" name="email" class="input input-bordered @error('email') textarea-error @enderror" value="{{ old('email') }}" required>
-                </div>
-                <div class="form-control">
-                    <label class="label w-16"><span class="label-text">Phone #</span></label>
-                    <input type="tel" name="phone" class="input input-bordered" value="{{ old('phone') }}">
+                <div class="form-control flex">
+                    <label class="label w-24"><span class="label-text">Name *</span></label>
+                    <input type="text" placeholder="Name" name="name" class="input input-bordered @error('name') textarea-error @enderror" value="{{ old('name') }}" required>
                 </div>
                 <div class="form-control flex">
-                    <label class="label w-16 flex flex-col items-start">
-                        <p class="label-text">Address/</p>
-                        <p class="label-text">Lot #</p>
-                    </label>
-                    <input type="text" name="address" class="input input-bordered" value="{{ old('address') }}">
+                    <label class="label w-24"><span class="label-text">Email *</span></label>
+                    <input type="email" placeholder="Email" name="email" class="input input-bordered @error('email') textarea-error @enderror" value="{{ old('email') }}" required>
                 </div>
-                <div class="form-control">
-                    <label class="label w-16"><span class="label-text">Topic *</span></label>
+                <div class="form-control flex">
+                    <label class="label w-24"><span class="label-text">Phone #</span></label>
+                    <input type="tel" placeholder="Phone #" name="phone" class="input input-bordered" value="{{ old('phone') }}">
+                </div>
+                <div class="form-control flex">
+                    <label class="label w-24">
+                        <p class="label-text">Address/ Lot</p>
+                    </label>
+                    <input type="text" placeholder="Address/ Lot" name="address" class="input input-bordered" value="{{ old('address') }}">
+                </div>
+                <div class="form-control flex">
+                    <label class="label w-24"><span class="label-text">Topic *</span></label>
                     <select name="topic" class="select select-bordered @error('topic') textarea-error @enderror" value="{{ old('topic') }}" required>
                         <option value="">Select a topic</option>
                         <option value="general">General Question</option>
@@ -57,12 +56,12 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div class="form-control">
-                    <label class="label w-16"><span class="label-text">Message *</span></label>
-                    <textarea name="message" class="textarea textarea-bordered @error('message') textarea-error @enderror" rows="4">{{ old('message') }}</textarea>
+                <div class="form-control items-start flex">
+                    <label class="label w-24"><span class="label-text">Message *</span></label>
+                    <textarea name="message" placeholder="Message"class="textarea textarea-bordered @error('message') textarea-error @enderror" rows="4">{{ old('message') }}</textarea>
                 </div>
                 <div class="form-control">
-                    <label class="label w-16"><span class="label-text">Preferred Response Method *</span></label>
+                    <label class="label w-24 mb-2"><span class="label-text">Preferred Response Method *</span></label>
                     <div class="flex gap-4">
                         <label class="cursor-pointer">
                             <input type="radio" name="response_type" value="email" class="radio @error('response_type') text-error @enderror" {{ old('response_type') == 'email' ? 'checked' : '' }}>

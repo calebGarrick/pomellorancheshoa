@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mail;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
 use App\Mail\HoaContactForm;
 
 class ContactController extends Controller
@@ -33,7 +34,13 @@ class ContactController extends Controller
                 'acknowledge_tos.required' => 'Please acknowledge the terms of communication',
             ],);
 
-        Mail::to('prhoa@mailmt.com')->send(new HoaContactForm(request()->all()));
+        try {
+            Mail::to('pmhoa@mailmt.com')->send(new HoaContactForm(request()->all()));
+            return back()->with('success', 'Your message has been sent successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Mail send failed: ' . $e->getMessage());
+            return back()->with('error', 'Failed to send message.');
+        }
 
         return back()->with('success', 'Your message has been sent successfully!');
     }
