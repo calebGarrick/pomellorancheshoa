@@ -53,6 +53,12 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
+        "deploy": [
+            "git fetch",
+            "git reset --hard",
+            "git rebase",
+            "composer install --no-dev --optimize-autoloader"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
