@@ -39,7 +39,7 @@ export default {
           "base-200": "#e3e3e3",
           "base-300": "#d1d1d1",
           "base-content": "#31302f",
-          "info": "#ebf4ff",
+          "info": "#fdf8c1",
           "info-content": "#20204d",
           "success": "#a0d6b8",
           "success-content": "#fefdfd",

@@ -81,7 +81,7 @@
                     <label class="cursor-pointer">
                         <input type="checkbox" name="acknowledge_tos" class="checkbox @error('acknowledge_tos') textarea-error @enderror" required>
                         <span class="ml-2">
-                            I acknowledge the <span class="btn btn-link px-0" onclick="tosModal.showModal()">terms of communication</span>
+                            I acknowledge the <span class="underline text-primary cursor-pointer hover:text-secondary px-0" onclick="tosModal.showModal()">terms of communication</span>
                         </span>
                         <dialog id="tosModal" class="modal">
                             <div class="modal-box">
