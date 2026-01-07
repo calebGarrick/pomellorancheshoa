@@ -3,7 +3,7 @@
     <x-slot:title>
         About Us
     </x-slot:title>
-    <div class="hero bg-base-200 my-4">
+    <div class="hero bg-base-200 rounded-xl my-4">
         <div class="hero-content flex-col lg:flex-row">
             <div>
                 <h1 class="text-3xl font-bold mb-4">Our Community</h1>
@@ -21,8 +21,8 @@
         </div>
     </div>
 
-    <div class="flex w-full flex-col lg:flex-row mb-6 gap-6">
-        <div class="card bg-accent rounded-box grid min-h-48 grow place-items-center px-12">
+    <div class="flex w-full flex-col xl:flex-row mb-6 gap-6">
+        <div class="card bg-primary rounded-box grid min-h-48 grow place-items-center px-12">
             <h1 class="text-2xl font-bold">Our amenities</h1>
             <ul class="list-disc list-inside">
                 <li>Large, spacious lots with a true rural atmosphere</li>
@@ -43,22 +43,19 @@
         </div>
     </div>
 
-    <div class="card bg-info rounded-box grid max-h-140 min-h-98 grow place-items-center px-12">
+    <div class="card bg-neutral rounded-box grid max-h-140 min-h-98 grow place-items-center px-12">
         <h1 class="text-2xl font-bold">Your Board of Directors</h1>
         <p>Effective as of November 22, 2025, your HOA Board members are:</p>
         <ul class="list-disc list-inside">
-            <li>
-                President/Treasurer/Website Operations: 
-                <a class="btn btn-link px-0 h-4 align-baseline" onclick="joeModal.showModal()">
+            <li>President/Treasurer/Website Operations: 
+                <a class="underline text-white cursor-pointer hover:text-info h-4 align-baseline" onclick="joeModal.showModal()">
                     Joe Ricciardi
                 </a>
                 <dialog id="joeModal" class="modal">
                     <div class="modal-box card">
                         <div class="flex justify-between items-baseline mb-4">
                             <h3 class="font-bold text-lg mb-4">About Joe Ricciardi</h3>
-                            <button 
-                                class="btn w-6 h-6 btn-circle" 
-                                onclick="joeModal.close()">
+                            <button class="btn btn-soft btn-error btn-circle" type="button" onclick="joeModal.close()">
                                 x
                             </button>
                         </div>

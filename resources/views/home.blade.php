@@ -64,7 +64,7 @@
                         The Pomello Ranches HOA exists to preserve the character of our community, protect property values, and encourage a genuine “neighbors helping neighbors” spirit.
                         Whether you’re a new resident or have lived here for years, this page will help you understand how the HOA works and how to get involved.
                 </p>
-                <a class="btn btn-info" href="{{ route('contact') }}">Meeting RSVP</a>    
+                <a class="btn btn-neutral" href="{{ route('contact') }}">Meeting RSVP</a>    
             </div>
         </div>
     </div>

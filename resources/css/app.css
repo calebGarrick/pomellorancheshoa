@@ -1,6 +1,44 @@
 
 @import 'tailwindcss';
 
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "autumn";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(95.814% 0 0);
+  --color-base-200: oklch(89.107% 0 0);
+  --color-base-300: oklch(82.4% 0 0);
+  --color-base-content: oklch(19.162% 0 0);
+  --color-primary: oklch(55% 0.163 48.998);
+  --color-primary-content: oklch(88.144% 0.032 17.53);
+  --color-secondary: oklch(66% 0.179 58.318);
+  --color-secondary-content: oklch(98% 0.016 73.684);
+  --color-accent: oklch(68.1% 0.094 60.729);
+  --color-accent-content: oklch(14.685% 0.018 60.729);
+  --color-neutral: oklch(54.4% 0.068 51.902);
+  --color-neutral-content: oklch(98% 0.022 95.277);
+  --color-info: oklch(92.7% 0.050 100.200);
+  --color-info-content: oklch(13.844% 0.019 207.284);
+  --color-success: oklch(66.6% 0.080 159);
+  --color-success-content: oklch(98% 0.018 155.826);
+  --color-warning: oklch(100% 0.370 96.200);
+  --color-warning-content: oklch(14.016% 0.032 56.844);
+  --color-error: oklch(68.1% 0.200 24.160);
+  --color-error-content: oklch(97% 0.013 17.38);
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
