@@ -21,9 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AlertController::class, 'index'])->name('home');
     Route::get('/about', function() {return view('about');})->name('about');
     Route::get('/contact', function() {return view('contact');})->name('contact');
-    Route::post('/contact/send', ContactController::class)->name('contact.send');
+    Route::get('/documents', function() {return view('documents');})->name('documents');
     Route::get('/meetings', function() {return view('meetings');})->name('meetings');
-    Route::get('/minutes', function() {return view('minutes');})->name('minutes');
+    Route::post('/contact/send', ContactController::class)->name('contact.send');
     
     Route::post('/register', Register::class)
         ->middleware('guest');

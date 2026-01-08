@@ -99,7 +99,7 @@
                             </div>
                     </label>
                 </div>
-                <div class="card-actions justify-end">
+                <div class="card-actions justify-center">
                     @if ($errors->any())
                         <div class="alert alert-error alert-soft">
                             <ul class="list-inside">
