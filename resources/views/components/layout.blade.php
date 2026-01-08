@@ -32,6 +32,9 @@
                     <li>
                         <a class="btn {{ request()->routeIs('meetings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('meetings') }}">Meetings</a>
                     </li>
+                    <li>
+                        <a class="btn {{ request()->routeIs('projects') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('projects') }}">Projects</a>
+                    </li>
                 </ul>
             </div>
             <div>

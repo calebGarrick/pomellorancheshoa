@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contact', function() {return view('contact');})->name('contact');
     Route::get('/documents', function() {return view('documents');})->name('documents');
     Route::get('/meetings', function() {return view('meetings');})->name('meetings');
+    Route::get('/projects', function() {return view('projects');})->name('projects');
     Route::post('/contact/send', ContactController::class)->name('contact.send');
     
     Route::post('/register', Register::class)

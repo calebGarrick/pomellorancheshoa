@@ -102,7 +102,7 @@
                 <div class="card-actions justify-center">
                     @if ($errors->any())
                         <div class="alert alert-error alert-soft">
-                            <ul class="list-inside">
+                            <ul >
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
