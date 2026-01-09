@@ -22,24 +22,28 @@
     </div>
 
     <div class="flex w-full flex-col xl:flex-row mb-6 gap-6">
-        <div class="card bg-primary text-white rounded-box grid min-h-48 grow place-items-center px-12">
-            <h1 class="text-2xl font-bold">Our amenities</h1>
-            <ul class="list-disc">
-                <li>Large, spacious lots with a true rural atmosphere</li>
-                <li>An equestrian and agricultural lifestyle</li>
-                <li>A strong respect for privacy and peaceful living</li>
-                <li>Neighbors who look out for one another</li>
-            </ul>
+        <div class="card bg-base-100 rounded-box grid min-h-48 grow place-items-center px-12">
+            <div class="card-body">
+                <h1 class="card-title text-2xl font-bold">Our amenities</h1>
+                <ul class="list-disc">
+                    <li>Large, spacious lots with a true rural atmosphere</li>
+                    <li>An equestrian and agricultural lifestyle</li>
+                    <li>A strong respect for privacy and peaceful living</li>
+                    <li>Neighbors who look out for one another</li>
+                </ul>
+            </div>
         </div>
-        <div class="card bg-secondary text-white rounded-box grid min-h-48 grow place-items-center px-12">
-            <h1 class="text-2xl font-bold">Our role as an HOA</h1>
-            <ul class="list-disc">
-                <li>Maintain common areas and landscaping</li>
-                <li>Enforce community rules and regulations</li>
-                <li>Organize community events and activities</li>
-                <li>Manage the community budget and finances</li>
-                <li>Communicate with residents about important updates and news</li>
-            </ul>
+        <div class="card bg-base-100 rounded-box grid min-h-48 grow place-items-center px-12">
+            <div class="card-body">
+                <h1 class=" card-title text-2xl font-bold">Our role as an HOA</h1>
+                <ul class="list-disc">
+                    <li>Maintain common areas and landscaping</li>
+                    <li>Enforce community rules and regulations</li>
+                    <li>Organize community events and activities</li>
+                    <li>Manage the community budget and finances</li>
+                    <li>Communicate with residents about important updates and news</li>
+                </ul>
+            </div>
         </div>
     </div>
 
