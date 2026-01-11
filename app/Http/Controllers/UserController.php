@@ -13,11 +13,25 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->authorize('viewAny');
+        $this->authorize('viewAny', User::class);
 
-        return redirect('/')->with('success','Viewing all users');
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%")
+                    ->orWhere('phone', 'like', "%$search%");
+            })
+            ->orderBy('name')
+            ->paginate(25);
+
+        // Keep the search query in pagination links
+        $users->appends(['search' => $search]);
+
+        return view('users.index', compact('users'));
     }
 
 
@@ -34,26 +48,18 @@ class UserController extends Controller
             'bill_address' => ['required', 'string', 'max:255'],
             'emergency_name' => ['required', 'string', 'max:255'],
             'emergency_phone' => ['required', 'string', 'min:10', 'max:255'],
-            'ecommunication' => ['required'],
             'password' => ['required', 'string', 'confirmed', 'min:8'],
         ]);
 
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'],
-            'password' => Hash::make($validated['password']),
-            'mail_address' => $validated['mail_address'],
-            'bill_address' => $validated['bill_address'],
-            'emergency_name' => $validated['emergency_name'],
-            'emergency_phone' => $validated['emergency_phone'],
-            'ecommunication' => $request->input('ecommunication') === 'on',
-            'lot' => strlen($request->input('lot')) ? $request->input('lot') : null,
+            ...$validated,
+            'lot' => $request->filled('lot') ? $request->lot : null,
+            'ecommunication' => $request->filled('ecommunication'),
         ]);
         
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Welcome to Pomello Ranches');
+        return redirect()->route('home')->with('success', 'Welcome to Pomello Ranches');
     }
 
     /**
@@ -61,9 +67,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('view', $user);
+        $this->authorize('viewAny', $user);
 
-        return redirect('/')->with('success', 'Viewing user '.$user->name);
+        return view('users.edit', ['user' => $user, 'title'=>"Account Settings of $user->name"])->with('success', 'Viewing user: '.$user->name);
     }
 
     /**
@@ -85,12 +91,12 @@ class UserController extends Controller
         );
 
         $user->update([
-        ...$validated,
-        'lot' => $request->filled('lot') ? $request->lot : null,
-        'ecommunication' => null != $request->input('ecommunication'),
-    ]);
+            ...$validated,
+            'lot' => $request->filled('lot') ? $request->lot : null,
+            'ecommunication' => $request->filled('ecommunication'),
+        ]);
 
-        return redirect('/settings')->with('success', 'Successfully update user info' );
+        return redirect()->back()->with('success', 'Successfully update user info' );
     }
 
     /**
@@ -100,7 +106,11 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
-        return redirect('/')->with('success', 'Deleting user: '.$user->name);
+        $name = $user->name;
+
+        $user->delete();
+
+        return redirect()->route('home')->with('success', "Deleted user: $name");
     }
 
     public function settings(){
@@ -108,6 +118,6 @@ class UserController extends Controller
 
         $this->authorize('view', $user);
 
-        return view('users.edit', ['user' => $user])->with('success', 'Viewing own user: '.$user->name);
+        return view('users.edit', ['user' => $user, 'title'=>'Account Settings'])->with('success', 'Viewing own user: '.$user->name);
     }
 }

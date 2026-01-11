@@ -11,7 +11,7 @@
                     <h1 class="text-3xl font-bold text-center">Create Account</h1>
                     <p class="text-xs text-error text-center mb-2">* required field</p>
 
-                    <form method="POST" action="/register">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <!-- Name -->
@@ -56,8 +56,8 @@
                             <input type="text"
                                    name="mail_address"
                                    placeholder="Mailing Address*"
-                                   value="{{ old('mail-address') }}"
-                                   class="input input-bordered @error('mail-address') input-error @enderror"
+                                   value="{{ old('mail_address') }}"
+                                   class="input input-bordered @error('mail_address') input-error @enderror"
                                    required 
                                    minlength="10"
                                    maxlength="255">
@@ -69,8 +69,8 @@
                             <input type="text"
                                    name="bill_address"
                                    placeholder="Billing Address*"
-                                   value="{{ old('bill-address') }}"
-                                   class="input input-bordered @error('bill-address') input-error @enderror"
+                                   value="{{ old('bill_address') }}"
+                                   class="input input-bordered @error('bill_address') input-error @enderror"
                                    required 
                                    minlength="10"
                                    maxlength="255">
@@ -82,8 +82,8 @@
                             <input type="text"
                                    name="emergency_name"
                                    placeholder="Emergency Contact*"
-                                   value="{{ old('emergency-name') }}"
-                                   class="input input-bordered @error('emergency-name') input-error @enderror"
+                                   value="{{ old('emergency_name') }}"
+                                   class="input input-bordered @error('emergency_name') input-error @enderror"
                                    required
                                    maxlength="255">
                             <span>Emergency Contact<span class="text-error">*</span></span>
@@ -94,8 +94,8 @@
                             <input type="text"
                                    name="emergency_phone"
                                    placeholder="Emergency Contact Number*"
-                                   value="{{ old('emergency-phone') }}"
-                                   class="input input-bordered @error('emergency-phone') input-error @enderror"
+                                   value="{{ old('emergency_phone') }}"
+                                   class="input input-bordered @error('emergency_phone') input-error @enderror"
                                    required
                                    maxlength="255">
                             <span>Emergency Contact Number<span class="text-error">*</span></span>
@@ -108,7 +108,6 @@
                                    placeholder="Lot Number" 
                                    value="{{ old('lot') }}"
                                    class="input input-bordered @error('lot') input-error @enderror"
-                                   required
                                    maxlength="255">
                             <span>Lot Number</span>
                         </label>
@@ -122,11 +121,6 @@
                                    required>
                             <span>Password<span class="text-error">*</span></span>
                         </label>
-                        @error('password')
-                            <div class="label -mt-4 mb-2">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
 
                         <!-- Password Confirmation -->
                         <label class="floating-label mb-6">
@@ -143,6 +137,12 @@
                             <input type="checkbox" name="ecommunication" class="checkbox" />
                             Electronic communications
                         </label>
+
+                        @foreach($errors->all() as $error)
+                            <div class="label">
+                                <span class="label-text-alt text-error">{{ $error }}</span>
+                            </div>
+                        @endforeach
 
                         <!-- Submit Button -->
                         <div class="form-control mt-8">

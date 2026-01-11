@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="autumn">
 <head>
@@ -22,24 +21,31 @@
                     <li>
                         <a class="btn {{ request()->routeIs('home') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="md:hidden">
-                        <a class="btn {{ request()->routeIs('settings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('settings') }}">Account</a>
-                    </li>
                     <li>
                         <a class="btn {{ request()->routeIs('about') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('about') }}">About Us</a>
                     </li>
                     <li>
                         <a class="btn {{ request()->routeIs('contact') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('contact') }}">Contact</a>
                     </li>
-                    <li>
-                        <a class="btn {{ request()->routeIs('documents') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('documents') }}">Documents</a>
-                    </li>
-                    <li>
-                        <a class="btn {{ request()->routeIs('meetings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('meetings') }}">Meetings</a>
-                    </li>
-                    <li>
-                        <a class="btn {{ request()->routeIs('projects') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('projects') }}">Projects</a>
-                    </li>
+                    @auth
+                        <li class="md:hidden">
+                            <a class="btn {{ request()->routeIs('settings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.settings') }}">Account</a>
+                        </li>
+                        @can('viewAny','App\\Models\\User')
+                            <li class="md:hidden">
+                                <a class="btn {{ request()->routeIs('users') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.index') }}">Users</a>
+                            </li>
+                        @endcan
+                        <li>
+                            <a class="btn {{ request()->routeIs('documents') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('documents') }}">Documents</a>
+                        </li>
+                        <li>
+                            <a class="btn {{ request()->routeIs('meetings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('meetings') }}">Meetings</a>
+                        </li>
+                        <li>
+                            <a class="btn {{ request()->routeIs('projects') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('projects') }}">Projects</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
             <div>
@@ -56,9 +62,14 @@
                     @csrf
                     <button type="submit" class="btn btn btn-sm">Logout</button>
                 </form>
-                <a href="{{ route('settings') }}" class="btn btn-ghost hidden md:flex">
+                <a href="{{ route('user.settings') }}" class="btn btn-ghost hidden md:flex">
                     <img class="w-6" src={{ Vite::asset('resources/images/gear.svg') }}>
                 </a>
+                @can('viewAny', App\Models\User::class)
+                    <a href="{{ route('user.index') }}" class="btn btn-ghost hidden md:flex">
+                        <img class="w-6" src={{ Vite::asset('resources/images/users.svg') }}>
+                    </a>
+                @endcan
             @else
                 <a href="/login" class="btn btn btn-sm">Sign In</a>
                 <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Sign Up</a>

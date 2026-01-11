@@ -1,10 +1,10 @@
 <x-layout>
     <x-slot:title>
-        Settings
+        {{ $title }}
     </x-slot:title>
     <div class="flex flex-col items-center">
-        <h1 class="text-2xl font-bold mb-4">Account Settings</h1>
-        <form class="card flex max-w-140 w-full flex-cols justify-center items-start p-4 bg-base-100 gap-6" method="POST" action="{{ route('user.update', $user->id) }}">
+        <h1 class="text-2xl font-bold mb-4">{{ $title }}</h1>
+        <form class="card flex max-w-140 w-full flex-cols justify-center items-start p-4 bg-base-100 gap-6" method="POST" action="{{ route('user.update', $user) }}">
             @csrf
             @method('PUT')
             <label class="floating-label w-full">
