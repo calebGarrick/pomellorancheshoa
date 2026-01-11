@@ -8,7 +8,8 @@
         <div class="hero-content flex-col">
             <div class="card w-96 bg-base-100">
                 <div class="card-body">
-                    <h1 class="text-3xl font-bold text-center mb-6">Create Account</h1>
+                    <h1 class="text-3xl font-bold text-center">Create Account</h1>
+                    <p class="text-xs text-error text-center mb-2">* required field</p>
 
                     <form method="POST" action="/register">
                         @csrf
@@ -17,42 +18,109 @@
                         <label class="floating-label mb-6">
                             <input type="text"
                                    name="name"
-                                   placeholder="John Doe"
+                                   placeholder="Name*"
                                    value="{{ old('name') }}"
                                    class="input input-bordered @error('name') input-error @enderror"
-                                   required>
-                            <span>Name</span>
+                                   required
+                                   maxlength="255">
+                            <span>Name<span class="text-error">*</span></span>
                         </label>
-                        @error('name')
-                            <div class="label -mt-4 mb-2">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
 
                         <!-- Email -->
                         <label class="floating-label mb-6">
                             <input type="email"
                                    name="email"
-                                   placeholder="[mail@example.com](<mailto:mail@example.com>)"
+                                   placeholder="Email Address*"
                                    value="{{ old('email') }}"
                                    class="input input-bordered @error('email') input-error @enderror"
-                                   required>
-                            <span>Email</span>
+                                   required
+                                   maxlength="255">
+                            <span>Email Address<span class="text-error">*</span></span>
                         </label>
-                        @error('email')
-                            <div class="label -mt-4 mb-2">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                        
+                        <!-- Phone -->
+                        <label class="floating-label mb-6">
+                            <input type="text"
+                                   name="phone"
+                                   placeholder="Phone Number*"
+                                   value="{{ old('phone') }}"
+                                   class="input input-bordered @error('phone') input-error @enderror"
+                                   required 
+                                   minlength="10"
+                                   maxlength="255">
+                            <span>Phone Number<span class="text-error">*</span></span>
+                        </label>
+                        
+                        <!-- mail-address -->
+                        <label class="floating-label mb-6">
+                            <input type="text"
+                                   name="mail_address"
+                                   placeholder="Mailing Address*"
+                                   value="{{ old('mail-address') }}"
+                                   class="input input-bordered @error('mail-address') input-error @enderror"
+                                   required 
+                                   minlength="10"
+                                   maxlength="255">
+                            <span>Mailing Address<span class="text-error">*</span></span>
+                        </label>
+                        
+                        <!-- bill-address -->
+                        <label class="floating-label mb-6">
+                            <input type="text"
+                                   name="bill_address"
+                                   placeholder="Billing Address*"
+                                   value="{{ old('bill-address') }}"
+                                   class="input input-bordered @error('bill-address') input-error @enderror"
+                                   required 
+                                   minlength="10"
+                                   maxlength="255">
+                            <span>Billing Address<span class="text-error">*</span></span>
+                        </label>
+
+                        <!-- Emergency Name -->
+                        <label class="floating-label mb-6">
+                            <input type="text"
+                                   name="emergency_name"
+                                   placeholder="Emergency Contact*"
+                                   value="{{ old('emergency-name') }}"
+                                   class="input input-bordered @error('emergency-name') input-error @enderror"
+                                   required
+                                   maxlength="255">
+                            <span>Emergency Contact<span class="text-error">*</span></span>
+                        </label>
+                        
+                        <!-- Emergency Phone -->
+                        <label class="floating-label mb-6">
+                            <input type="text"
+                                   name="emergency_phone"
+                                   placeholder="Emergency Contact Number*"
+                                   value="{{ old('emergency-phone') }}"
+                                   class="input input-bordered @error('emergency-phone') input-error @enderror"
+                                   required
+                                   maxlength="255">
+                            <span>Emergency Contact Number<span class="text-error">*</span></span>
+                        </label>
+                        
+                        <!-- Lot -->
+                        <label class="floating-label mb-6">
+                            <input type="text"
+                                   name="lot"
+                                   placeholder="Lot Number" 
+                                   value="{{ old('lot') }}"
+                                   class="input input-bordered @error('lot') input-error @enderror"
+                                   required
+                                   maxlength="255">
+                            <span>Lot Number</span>
+                        </label>
 
                         <!-- Password -->
                         <label class="floating-label mb-6">
                             <input type="password"
                                    name="password"
-                                   placeholder="••••••••"
+                                   placeholder="Password*"
                                    class="input input-bordered @error('password') input-error @enderror"
                                    required>
-                            <span>Password</span>
+                            <span>Password<span class="text-error">*</span></span>
                         </label>
                         @error('password')
                             <div class="label -mt-4 mb-2">
@@ -64,10 +132,16 @@
                         <label class="floating-label mb-6">
                             <input type="password"
                                    name="password_confirmation"
-                                   placeholder="••••••••"
+                                   placeholder="Confirm Password*"
                                    class="input input-bordered"
-                                   required>
-                            <span>Confirm Password</span>
+                                   required
+                                   minlength="8">
+                            <span>Confirm Password<span class="text-error">*</span></span>
+                        </label>
+
+                        <label class="label">
+                            <input type="checkbox" name="ecommunication" class="checkbox" />
+                            Electronic communications
                         </label>
 
                         <!-- Submit Button -->

@@ -14,7 +14,9 @@
         <div class="navbar-start flex gap-2">
             <div class="dropdown block">
                 <div tabindex="0" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> 
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> 
+                    </svg>
                 </div>
                 <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm gap-2">
                     <li>
@@ -40,13 +42,9 @@
             <div>
                 <a href="/" class="btn btn-ghost text-xl">
                     <img src="{{ Vite::asset('resources/images/logocolor220.png') }}" alt="Pomello Ranches HOA Logo" class="h-8 w-8 mr-2"/>
-                    Pomello Ranches HOA
+                    <span class="hidden md:inline">Pomello Ranches HOA</span>
                 </a>
             </div>
-            {{-- <div class="hidden md:flex gap-2 items-center">
-                <a class="btn {{ request()->routeIs('about') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('about') }}">About Us</a>
-                <a class="btn {{ request()->routeIs('contact') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('contact') }}">Contact</a>
-            </div> --}}
         </div>
         <div class="navbar-end gap-2 pr-4">
             @auth
@@ -55,6 +53,9 @@
                     @csrf
                     <button type="submit" class="btn btn btn-sm">Logout</button>
                 </form>
+                <a href="{{ route('settings') }}" class="btn btn-ghost">
+                    <img class="w-6" src={{ Vite::asset('resources/images/gear.svg') }}>
+                </a>
             @else
                 <a href="/login" class="btn btn btn-sm">Sign In</a>
                 <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Sign Up</a>

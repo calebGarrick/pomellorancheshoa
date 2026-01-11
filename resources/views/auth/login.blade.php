@@ -17,12 +17,12 @@
                         <label class="floating-label mb-6">
                             <input type="email"
                                    name="email"
-                                   placeholder="[mail@example.com](<mailto:mail@example.com>)"
+                                   placeholder="Email Address"
                                    value="{{ old('email') }}"
                                    class="input input-bordered @error('email') input-error @enderror"
                                    required
                                    autofocus>
-                            <span>Email</span>
+                            <span>Email Address</span>
                         </label>
                         @error('email')
                             <div class="label -mt-4 mb-2">
@@ -34,7 +34,7 @@
                         <label class="floating-label mb-6">
                             <input type="password"
                                    name="password"
-                                   placeholder="••••••••"
+                                   placeholder="Password"
                                    class="input input-bordered @error('password') input-error @enderror"
                                    required>
                             <span>Password</span>
@@ -66,7 +66,7 @@
                     <div class="divider">OR</div>
                     <p class="text-center text-sm">
                         Don't have an account?
-                        <a href="/register" class="link link-primary">Register</a>
+                        <a href={{ route('register') }} class="link link-primary">Register</a>
                     </p>
                 </div>
             </div>

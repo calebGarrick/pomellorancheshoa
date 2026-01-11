@@ -27,7 +27,7 @@
                         
                         @error('title')
                             <div class="label">
-                                <span class="label-text-alt text-error">{{ $title }}</span>
+                                <span class="label-text-alt text-error">{{ $message }}</span>
                             </div>
                         @enderror
 

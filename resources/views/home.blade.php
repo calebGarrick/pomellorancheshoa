@@ -8,7 +8,7 @@
     <div role="alert" class="alert alert-error alert-soft flex flex-col mb-8">
         <h3>{{ $alert->title }}</h4>
         <span>
-            {{ $alert->message}}
+            {{ $alert->message }}
         </span>
         @can('update', $alert)
             <div class="flex flex-row gap-4">
