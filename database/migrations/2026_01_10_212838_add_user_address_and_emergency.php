@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->required();
-            $table->string('lot');
+            $table->string('lot')->nullable();
             $table->string('mail_address')->required();
             $table->boolean('ecommunication')->required();
             $table->string('bill_address')->required();

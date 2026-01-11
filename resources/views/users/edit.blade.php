@@ -63,7 +63,6 @@
                         placeholder="Lot Number"
                         value="{{ $user->lot }}"
                         class="input input-bordered w-full @error('lot') input-error @enderror"
-                        required
                         autofocus>
                 <span>Lot Number</span>
             </label>

@@ -18,9 +18,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> 
                     </svg>
                 </div>
-                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm gap-2">
+                <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-5 w-52 p-2 shadow-sm gap-2">
                     <li>
                         <a class="btn {{ request()->routeIs('home') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="md:hidden">
+                        <a class="btn {{ request()->routeIs('settings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('settings') }}">Account</a>
                     </li>
                     <li>
                         <a class="btn {{ request()->routeIs('about') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('about') }}">About Us</a>
@@ -53,7 +56,7 @@
                     @csrf
                     <button type="submit" class="btn btn btn-sm">Logout</button>
                 </form>
-                <a href="{{ route('settings') }}" class="btn btn-ghost">
+                <a href="{{ route('settings') }}" class="btn btn-ghost hidden md:flex">
                     <img class="w-6" src={{ Vite::asset('resources/images/gear.svg') }}>
                 </a>
             @else
