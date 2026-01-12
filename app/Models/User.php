@@ -27,7 +27,8 @@ class User extends Authenticatable {
         'bill_address',
         'emergency_name',
         'emergency_phone',
-        'role'
+        'role',
+        'late',
     ];
 
     /**

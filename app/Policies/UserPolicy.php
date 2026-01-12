@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->id === $model->id  || $user->role === 'admin';
+        return $user->id === $model->id  || ($user->role === 'admin' && $model->role !== 'admin');
     }
 
     /**
@@ -36,6 +36,6 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->role === 'admin';
+        return $model->role !== 'admin';
     }
 }

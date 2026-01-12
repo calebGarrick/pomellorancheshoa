@@ -31,6 +31,10 @@ class UserController extends Controller
         // Keep the search query in pagination links
         $users->appends(['search' => $search]);
 
+        if ($request->ajax()) {
+            return view('users.partials.user_list', compact('users'))->render();
+        }
+
         return view('users.index', compact('users'));
     }
 

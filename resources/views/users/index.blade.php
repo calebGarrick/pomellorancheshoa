@@ -20,37 +20,29 @@
                     </svg>
                     <input name="search" value="{{ request('search') }}" type="search" placeholder="Search: name, email, or phone" id="user-search"/>
                 </label>
-                <button class="btn btn-success">
-                    GO
-                </button>
             </div>
         </form>
-        <div class="card w-full">
-            <div class="card-body font-bold grid grid-cols-4 pb-0 mb-1">
-                <p>Name</p>
-                <p>Email</p>
-                <p>Phone</p>
-                <p></p>
-            </div>
-        </div>
-        @foreach($users as $user)
-            <div class="card bg-base-100 w-full mb-2">
-                <div class="card-body grid grid-cols-4 items-center">
-                    <p>{{ $user->name }}</p>
-                    <p>{{ $user->email }}</p>
-                    <p>{{ $user->phone }}</p>
-                    <span class="flex gap-2">
-                        <a href={{ route('user.edit', $user) }} class="btn btn-success">Edit</a>
-                        <form method="POST" action={{ route('user.destroy', $user) }} onsubmit="return confirm('Are you sure you want to delete this user?');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-error">
-                                Delete
-                            </button>
-                        </form>
-                    </span>
-                </div>
-            </div>
-        @endforeach
+        @include('users.partials.user_list', ['users' => $users])
     </div>
+    <script>
+        let timeout = null;
+        const searchInput = document.getElementById('user-search');
+        const usersContainer = document.getElementById('user-list');
+
+        searchInput.addEventListener('keyup', function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                const query = searchInput.value;
+
+                fetch(`{{ route('user.index') }}?search=${encodeURIComponent(query)}`, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                .then(res => res.text())
+                .then(html => {
+                    usersContainer.innerHTML = html;
+                })
+                .catch(err => console.error(err));
+            }, 300); // 1 second of inactivity
+        });
+    </script>
 </x-layout>
