@@ -6,7 +6,10 @@
 
     @foreach($alerts->all() as $alert)
     <div role="alert" class="alert alert-error alert-soft flex flex-col mb-8">
-        <h3>{{ $alert->title }}</h4>
+        <div class="flex flex-col items-center">
+            <p class="font-bold text-lg">{{ $alert->title }}</p>
+            <p>As of {{ $alert->created_at->format('n/d') }} at {{ $alert->created_at->format('g:ia') }}</p>
+        </div>
         <span>
             {{ $alert->message }}
         </span>
