@@ -23,21 +23,21 @@
                 @csrf
                 <div class="form-control flex">
                     <label class="label w-24"><span class="label-text">Name *</span></label>
-                    <input type="text" placeholder="Name" name="name" class="input input-bordered @error('name') textarea-error @enderror" value="{{ old('name') }}" required>
+                    <input type="text" placeholder="Name" value="{{ $user->name ?? null }}" name="name" class="input input-bordered @error('name') textarea-error @enderror" value="{{ old('name') }}" required>
                 </div>
                 <div class="form-control flex">
                     <label class="label w-24"><span class="label-text">Email *</span></label>
-                    <input type="email" placeholder="Email" name="email" class="input input-bordered @error('email') textarea-error @enderror" value="{{ old('email') }}" required>
+                    <input type="email" placeholder="Email" value="{{ $user->email ?? null }}" name="email" class="input input-bordered @error('email') textarea-error @enderror" value="{{ old('email') }}" required>
                 </div>
                 <div class="form-control flex">
                     <label class="label w-24"><span class="label-text">Phone #</span></label>
-                    <input type="tel" placeholder="Phone #" name="phone" class="input input-bordered" value="{{ old('phone') }}">
+                    <input type="tel" placeholder="Phone #" value="{{ $user->phone ?? null }}" name="phone" class="input input-bordered" value="{{ old('phone') }}">
                 </div>
                 <div class="form-control flex">
                     <label class="label w-24">
                         <p class="label-text">Address/ Lot</p>
                     </label>
-                    <input type="text" placeholder="Address/ Lot" name="address" class="input input-bordered" value="{{ old('address') }}">
+                    <input type="text" placeholder="Address/ Lot" value="{{ $user->lot?? $user->mail_address ?? null }}" name="address" class="input input-bordered" value="{{ old('address') }}">
                 </div>
                 <div class="form-control flex">
                     <label class="label w-24"><span class="label-text">Topic *</span></label>

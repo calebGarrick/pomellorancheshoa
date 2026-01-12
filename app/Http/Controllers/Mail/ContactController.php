@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\HoaContactForm;
 
 class ContactController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function showContactForm()
+    {
+        $user = Auth::user();
+        return view('contact', compact('user'));
+    }
+
+    public function send(Request $request)
     {
         request()->validate([
                 'name' => 'required|string',
@@ -36,8 +40,6 @@ class ContactController extends Controller
             ],);
 
         try {
-            Log::info('Mailer in use: ' . config('mail.default'));
-
             Mail::to(env('MAIL_TO_ADDRESS'))->send(new HoaContactForm(request()->all()));
             return back()->with('success', 'Your message has been sent successfully!');
         } catch (\Exception $e) {

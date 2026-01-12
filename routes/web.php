@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 //public page routes
 Route::get('/', [AlertController::class, 'index'])->name('home');
 Route::get('/about', function() {return view('about');})->name('about');
-Route::get('/contact', function() {return view('contact');})->name('contact');
+Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact');
 
 
 Route::view('/register', 'auth.register')
@@ -48,7 +48,7 @@ Route::view('/login', 'auth.login')
     ->name('login');
 
 //public action routes
-Route::post('/contact/send', ContactController::class)->name('contact.send');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::post('/register', [UserController::class, 'store'])
     ->middleware('guest')
