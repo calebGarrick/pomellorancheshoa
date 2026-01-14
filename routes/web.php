@@ -23,6 +23,7 @@ Route::middleware(['auth', 'can:viewAny, App\Models\User'])->group(function () {
 
 // Routes for any logged in user
 Route::middleware('auth')->group(function () {
+    Route::get('/documents', function() {return view('documents');})->name('documents');
     Route::get('/meetings', function() {return view('meetings');})->name('meetings');
     Route::get('/projects', function() {return view('projects');})->name('projects');
     
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [AlertController::class, 'index'])->name('home');
 Route::get('/about', function() {return view('about');})->name('about');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact');
-Route::get('/documents', function() {return view('documents');})->name('documents');
+Route::get('/estoppel', function() {return view('estoppel');})->name('estoppel');
 
 
 Route::view('/register', 'auth.register')

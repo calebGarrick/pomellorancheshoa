@@ -27,6 +27,9 @@
                     <li>
                         <a class="btn {{ request()->routeIs('contact') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('contact') }}">Contact</a>
                     </li>
+                    <li>
+                        <a class="btn {{ request()->routeIs('estoppel') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('estoppel') }}">Estoppel</a>
+                    </li>
                     @auth
                         <li class="md:hidden">
                             <a class="btn {{ request()->routeIs('settings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.settings') }}">Account</a>
@@ -36,11 +39,9 @@
                                 <a class="btn {{ request()->routeIs('users') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.index') }}">Users</a>
                             </li>
                         @endcan
-                    @endauth
                         <li>
                             <a class="btn {{ request()->routeIs('documents') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('documents') }}">Documents</a>
                         </li>
-                    @auth
                         <li>
                             <a class="btn {{ request()->routeIs('meetings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('meetings') }}">Meetings</a>
                         </li>
