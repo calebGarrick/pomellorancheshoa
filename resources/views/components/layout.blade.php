@@ -36,9 +36,11 @@
                                 <a class="btn {{ request()->routeIs('users') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.index') }}">Users</a>
                             </li>
                         @endcan
+                    @endauth
                         <li>
                             <a class="btn {{ request()->routeIs('documents') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('documents') }}">Documents</a>
                         </li>
+                    @auth
                         <li>
                             <a class="btn {{ request()->routeIs('meetings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('meetings') }}">Meetings</a>
                         </li>

@@ -69,10 +69,6 @@
                             <span class="ml-2">Email</span>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="response_type" value="phone" class="radio @error('response_type') text-error @enderror" {{ old('response_type') == 'phone' ? 'checked' : '' }}>
-                            <span class="ml-2">Phone</span>
-                        </label>
-                        <label class="cursor-pointer">
                             <input type="radio" name="response_type" value="none" class="radio @error('response_type') text-error @enderror" {{ old('response_type') == 'none' ? 'checked' : '' }}>
                             <span class="ml-2">None</span>
                         </label>
