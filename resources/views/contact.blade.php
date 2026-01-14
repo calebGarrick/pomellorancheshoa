@@ -53,6 +53,7 @@
                         <option value="update">Name / Contact Info Update</option>
                         <option value="map">Lot Map Name Change</option>    
                         <option value="rsvp">Meeting RSVP (Enter number of attendees)</option>    
+                        <option value="estoppel">Estoppel Request</option>    
                         <option value="other">Other</option>
                     </select>
                 </div>
