@@ -9,7 +9,7 @@
             <h2 class="card-title">Contact - Meeting RSVP Here</h2>
             <p>
                 Please use this form to submit any questions, concerns, 
-                or suggestions, to the Association. You may also use 
+                or suggestions to the Association. You may also use 
                 this section to update your contact information. Keeping 
                 your contact details current is especially important in 
                 the event of an emergency. 
