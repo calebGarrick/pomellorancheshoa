@@ -81,6 +81,7 @@ jobs:
               cd pomellorancheshoa
               git fetch --all
               git reset --hard origin/release
+              composer install --no-dev
             ) < /dev/null
             kill -9 $SSH_AGENT_PID || true
             exit 0
