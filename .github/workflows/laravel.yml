@@ -73,7 +73,7 @@ jobs:
       - name: Run remote commands
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: pomelorancheshoa.com
+          host: pomellorancheshoa.com
           username: serfcnte
           key: ${{ secrets.CPANEL_SSH_KEY }}
           script: |
