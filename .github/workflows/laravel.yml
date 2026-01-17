@@ -81,3 +81,4 @@ jobs:
             git fetch
             git reset --hard
             php /opt/cpanel/composer/bin/composer install --no-dev
+            exit
