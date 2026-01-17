@@ -62,7 +62,7 @@
             class="max-w-sm rounded-lg shadow-2xl"
             />
             <div>
-                Welcome to <h1 class="text-4xl font-bold"> Pomello Ranches Homeowners Association</h1>
+                Welcome to... <h1 class="text-4xl font-bold"> Pomello Ranches Homeowners Association</h1>
                 <p class="py-4">
                         The Pomello Ranches HOA exists to preserve the character of our community, protect property values, and encourage a genuine “neighbors helping neighbors” spirit.
                         Whether you’re a new resident or have lived here for years, this page will help you understand how the HOA works and how to get involved.
