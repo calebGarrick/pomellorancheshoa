@@ -80,4 +80,4 @@ jobs:
             cd pomellorancheshoa
             git fetch
             git reset --hard
-            composer install --no-dev
+            php /opt/cpanel/composer/bin/composer install --no-dev
