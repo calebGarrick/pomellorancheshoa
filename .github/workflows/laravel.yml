@@ -81,7 +81,7 @@ jobs:
               cd pomellorancheshoa
               git fetch --all
               git reset --hard origin/release
-              composer install --no-dev
+              php /opt/cpanel/composer/bin/composer install --no-dev -q
             ) < /dev/null
             kill -9 $SSH_AGENT_PID || true
             exit 0
