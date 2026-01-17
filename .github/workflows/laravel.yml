@@ -77,7 +77,10 @@ jobs:
           username: serfcnte
           key: ${{ secrets.CPANEL_SSH_KEY }}
           script: |
-            cd pomellorancheshoa
-            git fetch --all
-            git reset --hard origin/release
+            (
+              cd pomellorancheshoa
+              git fetch --all
+              git reset --hard origin/release
+            ) < /dev/null
+            kill -9 $SSH_AGENT_PID || true
             exit 0
