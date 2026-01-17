@@ -69,3 +69,15 @@ jobs:
           VERSION="v$(date +'%Y.%m.%d.%H%M')"
           git tag -f "$VERSION"
           git push origin release --tags --force
+
+      - name: Run remote commands
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: pomelorancheshoa.com
+          username: serfcnte
+          key: ${{ secrets.CPANEL_SSH_KEY }}
+          script: |
+            cd pomellorancheshoa
+            git fetch
+            git reset --hard
+            composer install --no-dev
