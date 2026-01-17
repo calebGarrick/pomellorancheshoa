@@ -9,6 +9,7 @@
                 <ul class="list-disc list-inside px-2">
                     <li><a href="https://www.dropbox.com/scl/fi/m0u5dxq55hfexea8yo3u3/032022.pdf?rlkey=0tu7lgp8sbe9ja4ery35mcmsi&st=tf0itpq6&dl=0" class="link link-primary" target="_blank" rel="noopener">March 19, 2022</a></li>
                     <li><a href="https://www.dropbox.com/scl/fi/ywl8fsbdb2er1lrqnx7br/121925.pdf.docx?rlkey=smkduzhmpnkokyo0jwbnpv7rp&st=8qk33gzv&dl=0" class="link link-primary" target="_blank" rel="noopener">December 19, 2025</a></li>
+               <li><a href="https://www.dropbox.com/scl/fi/2sr5axct69nondzmnv98z/minutes011526.pdf.docx?rlkey=y8v8o3k7oh49z0gw785bju05q&st=mcgir4n7&dl=0" class="link link-primary" target="_blank" rel="noopener">January 15, 2026</a></li>
                 </ul>
             </div>
         </div>
