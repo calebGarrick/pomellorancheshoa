@@ -77,8 +77,6 @@ jobs:
           username: serfcnte
           key: ${{ secrets.CPANEL_SSH_KEY }}
           script: |
-            cd pomellorancheshoa
-            git fetch
-            git reset --hard
-            php /opt/cpanel/composer/bin/composer install --no-dev --optimize-autoloader --no-ansi --no-progress -q
+            git fetch --all
+            git reset --hard origin/release
             exit 0
