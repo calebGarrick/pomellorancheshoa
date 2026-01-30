@@ -41,7 +41,7 @@
             </div>
             <div class="dropdown block lg:hidden absolute top-4 right-4 justify-end">
                 <div tabindex="0" class="btn btn-ghost">
-                    <img class="w-6" src={{ Vite::asset('resources/images/ellipsis.svg') }}>
+                    <img class="w-6" src="images/ellipsis.svg" alt="Options">
                 </div>
                 <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-5 p-2 shadow-sm gap-2">
                     <li>
