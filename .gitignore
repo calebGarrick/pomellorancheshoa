@@ -8,7 +8,8 @@ error_log
 .htaccess
 .well-known
 .htaccess.*
-bootstrap/cache
+bootstrap/cache/*.php
+package-lock.json
 .phpactor.json
 .phpunit.result.cache
 /.fleet
