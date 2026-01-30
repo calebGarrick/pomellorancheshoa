@@ -6,7 +6,7 @@
 
     <div class="card bg-base-100 shadow-sm">
         <div class="card-body flex flex-col gap-2 items-center">
-            <h2 class="card-title">Contact - Meeting RSVP Here</h2>
+            <h2 class="card-title">Contact</h2>
             <p>
                 Please use this form to submit any questions, concerns, 
                 or suggestions to the Association. You may also use 
