@@ -3,6 +3,12 @@
 .env
 .env.backup
 .env.production
+.ftpquota
+error_log
+.htaccess
+.well-known
+.htaccess.*
+bootstrap/cache
 .phpactor.json
 .phpunit.result.cache
 /.fleet
