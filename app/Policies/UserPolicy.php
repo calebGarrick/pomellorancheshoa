@@ -38,4 +38,9 @@ class UserPolicy
     {
         return $user->role == 'admin';
     }
+
+    public function approve(User $user): bool
+    {
+        return $user->role === 'admin';
+    }
 }
