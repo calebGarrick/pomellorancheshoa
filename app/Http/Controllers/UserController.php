@@ -59,11 +59,10 @@ class UserController extends Controller
             ...$validated,
             'lot' => $request->filled('lot') ? $request->lot : null,
             'ecommunication' => $request->filled('ecommunication'),
+            'approved' => false,
         ]);
-        
-        Auth::login($user);
 
-        return redirect()->route('home')->with('success', 'Welcome to Pomello Ranches');
+        return redirect()->route('home')->with('success', 'Your account has been created and is pending approval.');
     }
 
     /**
@@ -123,5 +122,13 @@ class UserController extends Controller
         $this->authorize('view', $user);
 
         return view('users.edit', ['user' => $user, 'title'=>'Account Settings'])->with('success', 'Viewing own user: '.$user->name);
+    }
+
+    public function approve(User $user){
+        $this->authorize('approve', User::class);
+
+        $user->update(['approved' => true]);
+
+        return redirect()->back()->with('success', "Approved user: $user->name");
     }
 }

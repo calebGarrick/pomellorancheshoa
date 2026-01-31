@@ -19,6 +19,14 @@ class Login extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if (!$user->approved) {
+                Auth::logout();
+                return back()
+                    ->withErrors(['email' => 'Your account is pending approval by an administrator.'])
+                    ->onlyInput('email');
+            }
+            
             $request->session()->regenerate();
 
             return redirect()->intended('/')->with('success', 'Welcome back!');
