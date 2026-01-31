@@ -4,19 +4,15 @@
     </x-slot:title>
     <div class="card bg-base-100 border border-base-300 p-4 mb-4">
         <div class="card-title font-semibold text-2xl">Present Projects</div>
+     
+
         <div class="card-content text-sm flex flex-col gap-1 m-4">
-            <h2 class="text-lg font-bold underline">Main Entrances/Roads</h2>
+     
+            <h2 class="text-lg font-bold underline">Roadside Vegetation Management Beginning January 20, 2026</h2>
             <div class="px-2 gap-1 flex flex-col">
                 <p>
-                    In the coming weeks, the HOA will begin collecting bids for the following projects:
-                    <ul class="list-disc px-6">
-                        <li>
-                            Enhancing the appearance of both main entrances on 65th Street and 69th Street
-                        </li>
-                        <li>
-                            Clearing and trimming overgrown vegetation along the community roadways, with 
-                            particular attention given to the increasing presence of 
-                            <a onclick="pepperModal.showModal()" class="link link-primary">Brazilian pepper trees</a>
+                   The Association will be conducting roadside vegetation management and right-of-way maintenance in designated areas throughout the community. This work is being performed to improve road safety, visibility, drainage, and overall appearance with particular attention given to the increasing presence of 
+                            <a onclick="pepperModal.showModal()" class="link link-primary">Brazilian pepper trees.</a>
                             <dialog id="pepperModal" class="modal">
                                 <div class="modal-box card gap-4">
                                     <div>
@@ -24,7 +20,7 @@
                                             <h3 class="font-bold text-lg mb-4">Brazilian Pepper Tree (Schinus terebinthifolia)</h3>
                                             <button class="btn btn-error btn-circle" type="button" onclick="pepperModal.close()">
                                                 x
-                                            </button>
+                                            </button>                                            
                                         </div>
                                     </div>
                                     <div>
@@ -109,9 +105,12 @@
                         </li>
                     </ul>
                 </p>
+                 <p>Residents may notice temporary equipment and activity along community roads during this time. We appreciate your patience and cooperation as these improvements are completed.</p>
+                                            <p>Thank you for helping keep our community safe and well-maintained.</p>
             </div>
         </div>
     </div>
+   <img src='images/veg.png' border='0' width='40'/>
     <div class="card bg-base-100 border border-base-300 p-4 mb-4">
         <div class="card-title font-semibold text-2xl">Completed Projects</div>
         <div class="card-content text-sm flex flex-col gap-1 m-4">

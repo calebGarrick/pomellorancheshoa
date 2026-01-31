@@ -28,6 +28,7 @@ class User extends Authenticatable {
         'emergency_name',
         'emergency_phone',
         'role',
+        'approved',
         'late',
     ];
 

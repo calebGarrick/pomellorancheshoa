@@ -11,6 +11,7 @@ use App\Http\Controllers\Mail\ContactController;
 
 // Route for admin user routes
 Route::middleware(['auth', 'can:viewAny, App\Models\User'])->group(function () {
+    Route::patch('/user/approve/{user}', [UserController::class, 'approve'])->name('user.approve');
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::get('/user/{user}', [UserController::class, 'edit'])->name('user.edit');
