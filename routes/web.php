@@ -7,6 +7,8 @@ use App\Http\Controllers\AlertController;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\RequestPassword;
+use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\Mail\ContactController;
 
 // Route for admin user routes
@@ -49,6 +51,14 @@ Route::view('/login', 'auth.login')
     ->middleware('guest')
     ->name('login');
 
+Route::view('/forgot-password', 'auth.forgot-password')
+    ->middleware('guest')
+    ->name('password.request');
+
+Route::view('/reset-password/{token}', 'auth.reset-password')
+    ->middleware('guest')
+    ->name('password.reset');
+
 //public action routes
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
@@ -59,3 +69,11 @@ Route::post('/register', [UserController::class, 'store'])
 Route::post('/login', Login::class)
     ->middleware('guest')
     ->name('auth.login');
+
+Route::post('/forgot-password', RequestPassword::class)
+    ->middleware('guest')
+    ->name('password.email');
+
+Route::post('/reset-password/{token}', ResetPassword::class)
+    ->middleware('guest')
+    ->name('password.update');

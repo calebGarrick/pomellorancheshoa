@@ -61,6 +61,11 @@
                                 Sign In
                             </button>
                         </div>
+                        <div class="mt-4 text-center">
+                            <a href="{{ route('password.request') }}" class="link link-secondary text-sm">
+                                Forgot your password?
+                            </a>
+                        </div>
                     </form>
 
                     <div class="divider">OR</div>
