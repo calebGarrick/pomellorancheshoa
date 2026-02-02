@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->trustHosts(at: ['www.pomellorancheshoa.com', 'localhost']);
+        $middleware->trustHosts(at: ['pomellorancheshoa.com', 'www.pomellorancheshoa.com', 'localhost']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
