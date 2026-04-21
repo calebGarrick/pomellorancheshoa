@@ -31,11 +31,11 @@
                         <a class="btn {{ request()->routeIs('estoppel') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('estoppel') }}">Estoppel</a>
                     </li>
                     @auth
-                        <li class="md:hidden">
+                        <li>
                             <a class="btn {{ request()->routeIs('settings') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.settings') }}">Account</a>
                         </li>
                         @can('viewAny','App\Models\User')
-                            <li class="md:hidden">
+                            <li>
                                 <a class="btn {{ request()->routeIs('users') ? 'btn-accent' : 'btn-outline' }}" href="{{ route('user.index') }}">Users</a>
                             </li>
                         @endcan
