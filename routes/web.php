@@ -17,6 +17,7 @@ Route::middleware(['auth', 'can:viewAny, App\Models\User'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::get('/user/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::get('/lotmap2026', function() {return view('lotmap2026');})->name('lotmap2026');
     
     Route::get('/alerts/{alert}/edit', [AlertController::class, 'edit'])->name('alerts.edit');
     Route::post('/alerts', [AlertController::class, 'store'])->name('alerts.store');
