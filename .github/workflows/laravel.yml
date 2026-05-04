@@ -88,8 +88,12 @@ jobs:
               fi
 
               cd "$APP_DIR"
-              git fetch --all
+              git merge --abort >/dev/null 2>&1 || true
+              git rebase --abort >/dev/null 2>&1 || true
+              git fetch origin release --prune
+              git checkout -B release origin/release
               git reset --hard origin/release
+              git clean -ffd
               php /opt/cpanel/composer/bin/composer install --no-dev -q
               php artisan optimize:clear
               php artisan optimize
