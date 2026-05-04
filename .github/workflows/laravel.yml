@@ -93,9 +93,26 @@ jobs:
               git fetch origin release --prune
               git checkout -B release origin/release
               git reset --hard origin/release
-              git clean -ffd
               php /opt/cpanel/composer/bin/composer install --no-dev -q
-              php artisan optimize:clear
+
+              if [ ! -f .env ] && [ -f "$HOME/.env" ]; then
+                cp "$HOME/.env" .env
+              fi
+
+              if [ ! -f .env ]; then
+                echo "Deployment error: missing .env in $APP_DIR and $HOME/.env" >&2
+                exit 1
+              fi
+
+              if ! grep -q '^APP_KEY=base64:' .env; then
+                echo "Deployment error: APP_KEY is missing in .env" >&2
+                exit 1
+              fi
+
+              php artisan config:clear
+              php artisan route:clear
+              php artisan view:clear
+              php artisan event:clear
               php artisan optimize
 
               mkdir -p "$PUBLIC_DIR"
