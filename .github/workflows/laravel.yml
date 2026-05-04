@@ -78,10 +78,45 @@ jobs:
           key: ${{ secrets.CPANEL_SSH_KEY }}
           script: |
             (
-              cd pomellorancheshoa
+              set -e
+
+              APP_DIR="$HOME/pomellorancheshoa"
+              PUBLIC_DIR="$HOME/public_html"
+
+              if [ ! -d "$APP_DIR/.git" ]; then
+                APP_DIR="$PUBLIC_DIR"
+              fi
+
+              cd "$APP_DIR"
               git fetch --all
               git reset --hard origin/release
               php /opt/cpanel/composer/bin/composer install --no-dev -q
+              php artisan optimize:clear
+              php artisan optimize
+
+              mkdir -p "$PUBLIC_DIR"
+              cp -a public/. "$PUBLIC_DIR/"
+
+              {
+                echo '<?php'
+                echo
+                echo 'use Illuminate\Foundation\Application;'
+                echo 'use Illuminate\Http\Request;'
+                echo
+                echo "define('LARAVEL_START', microtime(true));"
+                echo
+                echo "\$projectPath = getenv('LARAVEL_PROJECT_PATH') ?: '${APP_DIR}';"
+                echo
+                echo "if (file_exists(\$maintenance = \$projectPath.'/storage/framework/maintenance.php')) {"
+                echo '    require $maintenance;'
+                echo '}'
+                echo
+                echo "require \$projectPath.'/vendor/autoload.php';"
+                echo
+                echo '/** @var Application $app */'
+                echo "\$app = require_once \$projectPath.'/bootstrap/app.php';"
+                echo '$app->handleRequest(Request::capture());'
+              } > "$PUBLIC_DIR/index.php"
             ) < /dev/null
             kill -9 $SSH_AGENT_PID || true
             exit 0
