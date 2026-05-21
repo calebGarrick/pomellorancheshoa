@@ -5,12 +5,15 @@ use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\RequestPassword;
 use App\Http\Controllers\Auth\ResetPassword;
+use App\Http\Controllers\Mail\BroadcastEmailController;
 use App\Http\Controllers\Mail\ContactController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Route for admin user routes
 Route::middleware(['auth', 'can:viewAny, App\Models\User'])->group(function () {
+    Route::get('/mail/broadcast', [BroadcastEmailController::class, 'create'])->name('mail.broadcast.create');
+    Route::post('/mail/broadcast', [BroadcastEmailController::class, 'send'])->name('mail.broadcast.send');
     Route::patch('/user/approve/{user}', [UserController::class, 'approve'])->name('user.approve');
     Route::patch('/user/{user}/toggle-admin', [UserController::class, 'toggleAdmin'])->name('user.toggle-admin');
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
