@@ -3,6 +3,7 @@
         {{ $title }}
     </x-slot:title>
     <div class="flex flex-col items-center">
+        @php($canUpdate = $canUpdate ?? (auth()->user()?->can('update', $user) ?? false))
         <h1 class="text-2xl font-bold mb-4">{{ $title }}</h1>
         <form class="card flex max-w-140 w-full flex-cols justify-center items-start p-4 bg-base-100 gap-6" method="POST" action="{{ route('user.update', $user) }}">
             @csrf
@@ -13,6 +14,7 @@
                         placeholder="Name"
                         value="{{ $user->name }}"
                         class="input input-bordered w-full @error('name') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Name</span>
@@ -23,6 +25,7 @@
                         placeholder="Email Address"
                         value="{{ $user->email }}"
                         class="input input-bordered w-full @error('email') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Email Address</span>
@@ -33,6 +36,7 @@
                         placeholder="Phone"
                         value="{{ $user->phone }}"
                         class="input input-bordered w-full @error('phone') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Phone</span>
@@ -43,6 +47,7 @@
                         placeholder="Mailing Address"
                         value="{{ $user->mail_address }}"
                         class="input input-bordered w-full @error('mail_address') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Mailing Address</span>
@@ -53,6 +58,7 @@
                         placeholder="Billing Address"
                         value="{{ $user->bill_address }}"
                         class="input input-bordered w-full @error('bill_address') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Billing Address</span>
@@ -63,6 +69,7 @@
                         placeholder="Lot Number"
                         value="{{ $user->lot }}"
                         class="input input-bordered w-full @error('lot') input-error @enderror"
+                        @disabled(!$canUpdate)
                         autofocus>
                 <span>Lot Number</span>
             </label>
@@ -72,6 +79,7 @@
                         placeholder="Emergency Contact Name"
                         value="{{ $user->emergency_name }}"
                         class="input input-bordered w-full @error('emergency_name') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Emergency Contact</span>
@@ -82,12 +90,13 @@
                         placeholder="Emergency Contact Number"
                         value="{{ $user->emergency_phone }}"
                         class="input input-bordered w-full @error('emergency_phone') input-error @enderror"
+                        @disabled(!$canUpdate)
                         required
                         autofocus>
                 <span>Emergency Phone</span>
             </label>
             <label class="label w-full">
-                <input type="checkbox" name="ecommunication" class="checkbox"  @checked(old('ecommunication', $user->ecommunication))/>
+                <input type="checkbox" name="ecommunication" class="checkbox" @checked(old('ecommunication', $user->ecommunication)) @disabled(!$canUpdate)/>
                 Electronic communications
             </label>
             @foreach($errors->all() as $error)
@@ -95,7 +104,9 @@
                     <span class="label-text-alt text-error">{{ $error }}</span>
                 </div>
             @endforeach
-            <button type="submit" class="btn btn-success mt-2">Update</button>
+            @if($canUpdate)
+                <button type="submit" class="btn btn-success mt-2">Update</button>
+            @endif
         </form>
     </div>
 </x-layout>

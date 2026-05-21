@@ -10,7 +10,10 @@
     @foreach($users as $user)
         <div class="card bg-base-100 w-full mb-2">
             <div class="card-body grid grid-cols-3 lg:grid-cols-4 items-center">
-                <p>{{ $user->name }}</p>
+                <div>
+                    <p>{{ $user->name }}</p>
+                    <p class="text-xs opacity-70 capitalize">{{ $user->role }}</p>
+                </div>
                 <p>{{ $user->email }}</p>
                 <p>{{ $user->phone }}</p>
                 <span class="hidden lg:flex gap-2 justify-end">
@@ -25,8 +28,23 @@
                             </form>
                         @endif
                     @endcan
-                    @can('update', $user)
-                        <a href="{{ route('user.edit', $user) }}" class="btn btn-success">Edit</a>
+                    @can('toggleAdmin', $user)
+                        <form method="POST" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
+                            @csrf
+                            @method('PATCH')
+                            <button class="btn btn-warning">
+                                {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
+                            </button>
+                        </form>
+                    @endcan
+                    @can('view', $user)
+                        <a href="{{ route('user.edit', $user) }}" class="btn btn-success">
+                            @can('update', $user)
+                                Edit
+                            @else
+                                View
+                            @endcan
+                        </a>
                     @endcan
                     @can('delete', $user)
                         <form method="POST" action="{{ route('user.destroy', $user) }}" onsubmit="return confirm('Are you sure you want to delete this user?');">
@@ -58,8 +76,25 @@
                     @endcan
                     </li>
                     <li>
-                    @can('update', $user)
-                        <a href="{{ route('user.edit', $user) }}" class="btn btn-success w-24">Edit</a>
+                    @can('toggleAdmin', $user)
+                        <form method="POST" class="p-0" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
+                            @csrf
+                            @method('PATCH')
+                            <button class="btn btn-warning w-28">
+                                {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
+                            </button>
+                        </form>
+                    @endcan
+                    </li>
+                    <li>
+                    @can('view', $user)
+                        <a href="{{ route('user.edit', $user) }}" class="btn btn-success w-24">
+                            @can('update', $user)
+                                Edit
+                            @else
+                                View
+                            @endcan
+                        </a>
                     @endcan
                     </li>
                     <li>

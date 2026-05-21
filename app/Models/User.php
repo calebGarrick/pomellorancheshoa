@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use HasFactory, Notifiable;
 
     /**
@@ -53,8 +54,23 @@ class User extends Authenticatable {
         ];
     }
 
-    public function alerts(): HasMany {
+    public function alerts(): HasMany
+    {
         return $this->hasMany(Alert::class);
     }
-    
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'superadmin';
+    }
+
+    public function isStaff(): bool
+    {
+        return $this->isAdmin() || $this->isSuperAdmin();
+    }
 }

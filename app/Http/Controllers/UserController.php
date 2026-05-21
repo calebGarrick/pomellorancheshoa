@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -37,7 +35,6 @@ class UserController extends Controller
 
         return view('users.index', compact('users'));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -70,9 +67,15 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('viewAny', $user);
+        $this->authorize('view', $user);
 
-        return view('users.edit', ['user' => $user, 'title'=>"Account Settings of $user->name"])->with('success', 'Viewing user: '.$user->name);
+        $canUpdate = auth()->user()?->can('update', $user) ?? false;
+        $title = $canUpdate
+            ? "Account Settings of {$user->name}"
+            : "User Details of {$user->name}";
+
+        return view('users.edit', ['user' => $user, 'title' => $title, 'canUpdate' => $canUpdate])
+            ->with('success', 'Viewing user: '.$user->name);
     }
 
     /**
@@ -99,7 +102,7 @@ class UserController extends Controller
             'ecommunication' => $request->filled('ecommunication'),
         ]);
 
-        return redirect()->back()->with('success', 'Successfully update user info' );
+        return redirect()->back()->with('success', 'Successfully update user info');
     }
 
     /**
@@ -116,19 +119,35 @@ class UserController extends Controller
         return redirect()->route('home')->with('success', "Deleted user: $name");
     }
 
-    public function settings(){
+    public function settings()
+    {
         $user = auth()->user();
 
         $this->authorize('view', $user);
 
-        return view('users.edit', ['user' => $user, 'title'=>'Account Settings'])->with('success', 'Viewing own user: '.$user->name);
+        return view('users.edit', ['user' => $user, 'title' => 'Account Settings'])->with('success', 'Viewing own user: '.$user->name);
     }
 
-    public function approve(User $user){
+    public function approve(User $user)
+    {
         $this->authorize('approve', User::class);
 
         $user->update(['approved' => true]);
 
         return redirect()->back()->with('success', "Approved user: $user->name");
+    }
+
+    public function toggleAdmin(User $user)
+    {
+        $this->authorize('toggleAdmin', $user);
+
+        $newRole = $user->isAdmin() ? 'user' : 'admin';
+        $user->update(['role' => $newRole]);
+
+        $statusText = $newRole === 'admin'
+            ? 'Granted admin access to'
+            : 'Removed admin access from';
+
+        return redirect()->back()->with('success', "{$statusText} {$user->name}");
     }
 }

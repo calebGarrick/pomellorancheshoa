@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Comment;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class CommentPolicy
 {
@@ -13,7 +12,7 @@ class CommentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role === 'admin';
+        return $user->isStaff();
     }
 
     /**
@@ -21,7 +20,7 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment): bool
     {
-        return $user->role === 'admin';
+        return $user->isStaff();
     }
 
     /**
@@ -29,7 +28,7 @@ class CommentPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === 'admin';
+        return $user->isStaff();
     }
 
     /**
@@ -37,7 +36,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment): bool
     {
-        return $user->role === 'admin' && ($comment->$admin_id == null || $comment->$admin_id === $user->id);
+        return $user->isStaff() && ($comment->admin_id === null || $comment->admin_id === $user->id);
     }
 
     /**
@@ -45,6 +44,6 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment): bool
     {
-        return $user->role === 'admin' && ($comment->admin_id == null || $comment->$admin_id === $user->id);
+        return $user->isStaff() && ($comment->admin_id === null || $comment->admin_id === $user->id);
     }
 }

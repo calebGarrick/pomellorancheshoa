@@ -4,17 +4,15 @@ namespace App\Policies;
 
 use App\Models\Alert;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class AlertPolicy
 {
-
     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
-        return $user->role === 'admin';
+        return $user->isStaff();
     }
 
     /**
@@ -22,7 +20,7 @@ class AlertPolicy
      */
     public function update(User $user, Alert $alert): bool
     {
-        return $user->role === 'admin';
+        return $user->isStaff();
     }
 
     /**
@@ -30,6 +28,6 @@ class AlertPolicy
      */
     public function delete(User $user, Alert $alert): bool
     {
-        return $user->role === 'admin';
+        return $user->isStaff();
     }
 }
