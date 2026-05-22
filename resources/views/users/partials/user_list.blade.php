@@ -77,7 +77,7 @@
                     </li>
                     <li>
                     @can('toggleAdmin', $user)
-                        @if(!$user->approved)
+                        @if($user->approved)
                             <form method="POST" class="p-0" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
                                 @csrf
                                 @method('PATCH')
