@@ -17,6 +17,7 @@ class BroadcastEmailController extends Controller
 
         $recipientCount = User::query()
             ->whereNotNull('email')
+            ->where('approved', true)
             ->count();
 
         return view('mail.broadcast', [
@@ -28,6 +29,7 @@ class BroadcastEmailController extends Controller
     {
         $recipients = User::query()
             ->whereNotNull('email')
+            ->where('approved', true)
             ->select(['name', 'email'])
             ->get();
 
