@@ -32,7 +32,7 @@
                         <form method="POST" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
                             @csrf
                             @method('PATCH')
-                            <button class="btn btn-warning">
+                            <button class="btn {{ $user->isAdmin() ? 'btn-accent' : 'btn-primary' }}">
                                 {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
                             </button>
                         </form>
