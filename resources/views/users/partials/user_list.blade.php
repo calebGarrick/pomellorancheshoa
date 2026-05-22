@@ -29,13 +29,15 @@
                         @endif
                     @endcan
                     @can('toggleAdmin', $user)
-                        <form method="POST" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
-                            @csrf
-                            @method('PATCH')
-                            <button class="btn {{ $user->isAdmin() ? 'btn-accent' : 'btn-primary' }}">
-                                {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
-                            </button>
-                        </form>
+                        @if($user->approved)
+                            <form method="POST" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn {{ $user->isAdmin() ? 'btn-accent' : 'btn-primary' }}">
+                                    {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
+                                </button>
+                            </form>
+                        @endif
                     @endcan
                     @can('view', $user)
                         <a href="{{ route('user.edit', $user) }}" class="btn btn-success">
@@ -81,7 +83,7 @@
                             <form method="POST" class="p-0" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
                                 @csrf
                                 @method('PATCH')
-                                <button class="btn btn-warning w-28">
+                                <button class="btn {{ $user->isAdmin() ? 'btn-accent' : 'btn-primary' }} w-28">
                                     {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
                                 </button>
                             </form>
