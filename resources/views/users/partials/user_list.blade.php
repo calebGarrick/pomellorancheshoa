@@ -77,13 +77,15 @@
                     </li>
                     <li>
                     @can('toggleAdmin', $user)
-                        <form method="POST" class="p-0" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
-                            @csrf
-                            @method('PATCH')
-                            <button class="btn btn-warning w-28">
-                                {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
-                            </button>
-                        </form>
+                        @if(!$user->approved)
+                            <form method="POST" class="p-0" action="{{ route('user.toggle-admin', $user) }}" onsubmit="return confirm('Are you sure you want to change this user\'s admin access?');">
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn btn-warning w-28">
+                                    {{ $user->isAdmin() ? 'Un-admin' : 'Admin' }}
+                                </button>
+                            </form>
+                        @endif
                     @endcan
                     </li>
                     <li>
